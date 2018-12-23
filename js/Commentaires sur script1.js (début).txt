@@ -1,0 +1,69 @@
+script1.js : quelques commentaires 
+
+=================================================================================================
+Lignes 104, 111, 118 :
+
+document.getElementById("santeEnnemi").innerHTML = (giletJaune.sante = Number(350));
+
+=> à remplacer par document.getElementById("santeEnnemi").innerHTML = giletJaune.sante;
+=> tu as déjà l'information que la santé du giletJaune est égale à 350, tu as indiqué cette information
+lorsque que tu as fait un giletJaune.init("Glejone Esseulé", 350, 15, 0, "-JBLOK-",100);
+
+=================================================================================================
+Lignes 104, 111, 118 (toujours) :
+
+    document.getElementById("santeEnnemi").innerHTML = (giletJaune.sante = Number(350));
+    document.getElementById("santeEnnemi").innerHTML = (keke.sante = Number(275));
+    document.getElementById("santeEnnemi").innerHTML = (arrogant.sante = Number(145));
+
+=> tu fais 3 fois exactement le même traitement dans des branches différentes du switch. C'est signe que 
+tu peux factoriser tout ça.
+=> La solution c'est d'utiliser ta variable rndEnemy. Ca donnerait un truc du style :
+
+switch (getRndInterger(Min, Max)){
+    case (1):
+        rndEnnemi=giletJaune;
+        document.getElementById("aventure").innerHTML += ("</br></br></br>'AH NAN VPASSREZ PAS JCROA PA NAN'. Un humanoïde au cuir jaune phosphorescent vous bloque la route, vous empêchant de continuer votre chemin. Son regard hagard suppose que le dialogue sera vain. 'PASSREZ PA PI CETOU!'");
+        break;
+    
+    case(2):
+        rndEnnemi=keke;
+        document.getElementById("aventure").innerHTML += ("</br></br></br>Un individu aussi bombé que nerveux marche d'un pas determiné vers vous, son regard injecté de sang vous traverse tandis qu'il s'exclame : 'T'AS TES PAPIERS TOI ? T'ES UN BON FRONCOIS ??'. Vous n'avez pas le temps de répliquer qu'il semble vouloir vous immobiliser.");
+        break;
+    
+    case (3):
+        rndEnnemi=arrogant;
+        document.getElementById("aventure").innerHTML += ("</br></br></br>'Ptite merde de pauvre de merde, si ça va pas ici c'est clairement à cause des gens comme toi sans ambitions qui ont la haine du succès et qui ne developpe aucun pouvoir d'achat pour pouvoir accéder à toutes mes offres béton que j'me casse le potin m'voyez à mettre en place, c'est à cause de gens comme toi qu'y'a rien qui va ici vous êtes vraiment un plebe de merde voyez ou pas, t'es con tu parles pas mais qu'est ce que tu vas faire ? Qu'est ce que tu vas m'faire j'suis un intouchable moi petit bâtard, essayes de me toucher que je rigole vas y essaye on va s'marrer' </br>Cet individu est bien trop insuportable pour que vous passiez à côté innocemment.");
+        break;
+    
+    default:
+        alert("SUCE BIEN MON CUL");
+        break;
+}
+
+// tout le traitement commun aux 3 branches du switch se fait en dessous de celui-ci :
+document.getElementById("santeEnnemi").innerHTML = rndEnnemi.sante;
+scrollDown("fenetreCentrale");
+
+
+=> Autre amélioration : pourquoi tu ne stockerais pas le texte d'aventure de chacun des ennemis dans la classe Ennemi que tu as créée ?
+Dans le init tu aurais ainsi : this.texteAventure = "<br><br><br> [...]"
+
+Et dans le switch tu pourrais factoriser les document.getElementById("aventure") et les mettre en dessous de la même manière, ça donnerait :
+document.getElementById("aventure").innerHTML = rndEnnemi.texteAventure
+
+=================================================================================================
+Ligne 145
+
+[...]
+if (presenceEnnemi = 1){
+[...]
+
+Attention, erreur qui risque de te provoquer des bugs qui vont te faire galérer ta race. 
+Tu voulais dire " if (presenceEnnemi == 1) " (et non presenceEnnemi = 1 qui, lui, aura pour effet de stocker 1 dans la variable presenceEnnemi
+(et oui, le code dans la condition du if s'exécute même si à première vue ça n'a aucun sens de foutre autre chose que de simples conditions là dedans))
+
+
+=====================================================================================================
+
+La suite au prochain épisode.

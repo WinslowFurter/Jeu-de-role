@@ -1,0 +1,87 @@
+<!-- Mini jeu de rôle-->
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css" />
+
+        <title>On essaie des trucs</title>
+
+    </head>
+
+<!-- DEBUT BODY-->
+<body>
+
+    <header>
+        <h1>L'aventure des héros gentils</h1>
+        <h2>C'est un peu petit, connard.</h2>
+    </header>
+
+<!-- interface de jeu : 2 tableaux perso et un fil de jeu-->
+
+<section class = "conteneurCentral">
+
+    <aside id = "tableauPersonnage" class = "element">
+        <p id="pseudo"></p>
+        <p>Classe : <span id="classe"></span></p>
+        <p>Santé : <span id="santePerso"></span></p>
+        <p>Attaque : <span id="forcePerso"></span></p>
+        <p>Esquive : <span id="esquivePerso"></span></p>
+        <p>Coup Spécial : <span id="specialPerso"></span></br></p>
+    </aside>
+
+  <!-- Crée une div centrale dans lequel le texte aparaitra-->
+    <article id = "fenetreCentrale" class = "element">
+            
+            <p id="texteCentral">
+                Ici commence votre histoire, recharger la page revient à tout effacer !
+            </p>
+            <p id="aventure"></p>
+    </article>
+
+    <aside class = "element">
+        <div  id = "tableauEnnemis">
+        <p id="pseudoEnnemi"></p>
+        <p>Santé : <span id="santeEnnemi"></span></p>
+        <p>Dégat Attaque : <span id="forceEnnemi"></span></p>
+        <p><span id="specialEnnemi"></span></p>
+        </div>
+        <button id="bouton">Parcourir les chemins</button>
+        <p></p>
+        <button id="pokedex">Pokédex</button>
+    </aside>
+
+</section>
+
+<!-- Pad Bouton -->
+
+<div id = "padButton">
+
+    <div class = "bouton">
+       <button id="ATTAQUE"><i class="fas fa-fist-raised"></i> Attaque</button>
+    </div>
+
+    <div class = "bouton">
+        <button id="ESQUIVE"><i class="fas fa-diagnoses"></i> Esquive</button>
+    </div>
+
+    <div class = "bouton">
+        <button id="SPECIAL"><i class="fas fa-khanda"></i> Spécial</button>
+    </div>
+    <button class = "bouton" id="test"></button>
+
+</div>
+
+
+<!-- Fin pad bouton-->
+<div id="dialogBox" class="hidden">Blbablabla zefoizej fioezfjzeoifjzepgokze pfovkerdpocvekfzeiovr zefpzekg zepfkzepo kzepf kzepf kzepogkerpofkze</div>
+
+<script src="js/script2.js"></script>
+
+</body>
+
+</html>
